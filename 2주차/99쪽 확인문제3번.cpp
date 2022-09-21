@@ -3,8 +3,8 @@
 int main(void)
 {
 	int kor = 3, eng = 5, mat = 4;
-	double credits;
-	double res;
+	int credits;
+	int res;
 	double kscore = 3.8, escore = 4.4, mscore = 3.9;
 	double grade;
 
@@ -12,6 +12,8 @@ int main(void)
 	grade = (kscore + escore + mscore) / 3;
 
 	res = (credits >= 10) && (grade > 4.0);
+
+	printf("%d\n", res);
 
 	return 0;
 }
