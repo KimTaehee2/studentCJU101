@@ -2,8 +2,8 @@
 int main(void)
 
 {
-	int age = 25, chest = 95;
-	char size;
+	int age = 25, chest = 95; 
+	char size;               // 변수 저장
 	if (age < 20)
 	{
 		if (chest < 85)
@@ -17,7 +17,7 @@ int main(void)
 		else
 		{
 			size = 'L';
-		}
+		}            //나이가 20 미만이면 if~ else if~ else문에 만족하는 사이즈를 뽑아 37행으로 이동
 	}
 	else
 	{
@@ -33,7 +33,7 @@ int main(void)
 		{
 			size = 'L';
 		}
-	}
+	}                // 나이가 20 이상이면 if ~ else if ~ else문에 만족하는 사이즈를 뽑아 37행으로 이동
 	printf("Size is %c.", size);
 
 	return 0;
