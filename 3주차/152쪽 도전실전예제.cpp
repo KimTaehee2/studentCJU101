@@ -4,10 +4,10 @@ int main(void)
 	int A = 0; 
 	int B = 0;          
 	char op;               
-	int res;                                                     //A, B, op, res ÀúÀåÇÒ º¯¼ö ÃÊ±âÈ­
+	int res;                                                     //A, B, op, res ì €ì¥í•  ë³€ìˆ˜ ì´ˆê¸°í™”
 
-	printf("Enter the quadruple calculation(regular number) : "); //"»çÄ¢¿¬»ê ÀÔ·Â(Á¤¼ö) : "Ãâ·Â
-	scanf_s("%d%c%d", &A, &op, 1, &B); // º¯¼öµé¿¡ °ªÀ» ÀÔ·Â
+	printf("Enter the quadruple calculation(regular number) : "); //"ì‚¬ì¹™ì—°ì‚° ì…ë ¥(ì •ìˆ˜) : "ì¶œë ¥
+	scanf_s("%d%c%d", &A, &op, 1, &B); // ë³€ìˆ˜ë“¤ì— ê°’ì„ ì…ë ¥
 
 	switch (op)
 	{
@@ -23,9 +23,9 @@ int main(void)
 	case'/':
 		res = A / B;
 		break;
-	defualt:
-		res = 0;
-		break;            // op°¡ "+-*/" ÀÌ¸é res = A -+*/ B¸¦ ¼öÇàÇÏ°í 30ÇàÀ¸·Î ÀÌµ¿
+	default:
+		printf("error");
+		break;            // opê°€ "+-*/" ì´ë©´ res = A -+*/ Bë¥¼ ìˆ˜í–‰í•˜ê³  30í–‰ìœ¼ë¡œ ì´ë™
 	}
 	printf("%d%c%d=%d", A, op, B, res);
 
