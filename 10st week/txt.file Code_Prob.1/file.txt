@@ -1,0 +1,4 @@
+Integer : 123
+Real Number : 0.2300
+Word : a
+Words : asd
