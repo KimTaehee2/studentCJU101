@@ -2,43 +2,67 @@
 #include <string.h>
 #include<stdlib.h>
 
-#pragma warning(disable:4996) // C4996 ¿¡·¯¸¦ ¹«½Ã
+#pragma warning(disable:4996) // C4996 ì—ëŸ¬ë¥¼ ë¬´ì‹œ
 
 
 #define MAX_PATH 256
 #define NEXT_NUMBER 1
 
-char* getExt(char* fname)   //  ÆÄÀÏ È®ÀåÀÚ ÃßÃâ ÇÔ¼ö
+char* getExt_txt(char* fname)   //  íŒŒì¼ í™•ì¥ì ì¶”ì¶œ í•¨ìˆ˜
 {
-    static char buf[MAX_PATH] = ""; //  Á¤Àûº¯¼ö ¼±¾ğ
-    bool ret = false;
-    char* ptr = NULL;
+    static char buf[MAX_PATH] = ""; //  ì •ì ë³€ìˆ˜ ì„ ì–¸
+    char* ptr2 = NULL;
 
-    ptr = strrchr(fname, '.');  //  ¹®ÀÚ¿­¿¡¼­ ¸¶Áö¸·¿¡ À§Ä¡ÇÑ "." °Ë»ö
+    ptr2 = strrchr(fname, '.');  //  ë¬¸ìì—´ì—ì„œ ë§ˆì§€ë§‰ì— ìœ„ì¹˜í•œ "." ê²€ìƒ‰
 
-    if (ptr == NULL)    //  Ã£Áö ¸øÇÑ´Ù¸é NULLÀ» ¹İÈ¯
+    if (ptr2 == NULL)    //  ì°¾ì§€ ëª»í•œë‹¤ë©´ NULLì„ ë°˜í™˜
+    {
+        return NULL;
+    }
+
+    strcpy(buf, ptr2 + NEXT_NUMBER);   //  "." ë‹¤ìŒ ë¬¸ìë¥¼ bufì— ë³µì‚¬
+
+    printf("The [%s] file extension is [%s].\n", fname, ptr2);
+
+    return buf; //  bufë°˜í™˜
+}
+
+char* getExt_string(char* fname)   //  íŒŒì¼ëª… ì¶”ì¶œ í•¨ìˆ˜
+{
+    static char buf[MAX_PATH] = ""; //  ì •ì ë³€ìˆ˜ ì„ ì–¸
+    char* ptr1 = NULL;
+
+    ptr1 = strrchr(fname, '\\');  //  ë¬¸ìì—´ì—ì„œ ë§ˆì§€ë§‰ì— ìœ„ì¹˜í•œ "." ê²€ìƒ‰
+  
+
+    if (ptr1 == NULL)    //  ì°¾ì§€ ëª»í•œë‹¤ë©´ NULLì„ ë°˜í™˜
         return NULL;
 
-    strcpy(buf, ptr + NEXT_NUMBER);   //  "." ´ÙÀ½ ¹®ÀÚ¸¦ buf¿¡ º¹»ç
+    strcpy(buf, ptr1 + NEXT_NUMBER);   //  "." ë‹¤ìŒ ë¬¸ìë¥¼ bufì— ë³µì‚¬
 
-    return buf; //  buf¹İÈ¯
+
+    printf("File name is [%s].\n", ptr1);
+
+    return buf; //  bufë°˜í™˜
 }
+
+
 
 int main(void)
 {
     FILE* fp = NULL;
 
-    fp = fopen("C:\\Users\\a2070\\Documents\\GitHub\\Test1\\test.txt", "w");    //  Test1 Æú´õ¿¡ test.txtÆÄÀÏ »ı¼º
+    fp = fopen("C:\\Users\\a2070\\Documents\\GitHub\\Test1\\test.txt", "w");    //  Test1 í´ë”ì— test.txtíŒŒì¼ ìƒì„±
 
-    if (fp == NULL) //  ÆÄÀÏ Æ÷ÀÎÅÍ°¡ ³Î Æ÷ÀÎÅÍ¸é ÆÄÀÏ °³¹æ ½ÇÆĞ
+    if (fp == NULL) //  íŒŒì¼ í¬ì¸í„°ê°€ ë„ í¬ì¸í„°ë©´ íŒŒì¼ ê°œë°© ì‹¤íŒ¨
     {
         printf("File doesn't open\n");
         return 1;
     }
 
-    fclose(fp); //  ÆÄÀÏ Æ÷ÀÎÅÍ ´İ±â
+    fclose(fp); //  íŒŒì¼ í¬ì¸í„° ë‹«ê¸°
 
-    char file_adr[MAX_PATH] = { 0 }; //  ÀÔ·ÂÇÒ ÆÄÀÏ ÁÖ¼Ò Å©±â ¼±¾ğ ¹× ÃÊ±âÈ­
+    char file_adr[MAX_PATH] = { 0 }; //  ì…ë ¥í•  íŒŒì¼ ì£¼ì†Œ í¬ê¸° ì„ ì–¸ ë° ì´ˆê¸°í™”
     char* ptr = NULL;
 
     printf("Enter your file adress : ");
@@ -46,9 +70,8 @@ int main(void)
 
     printf("\n");
 
-    ptr = getExt(file_adr); //  ÆÄÀÏ È®ÀåÀÚ ÃßÃâ ÇÔ¼ö È£Ãâ
-
-    printf("The [%s] file extension is [%s].\n", file_adr, ptr);
+    ptr = getExt_string(file_adr);  //  íŒŒì¼ëª… ì¶”ì¶œ í•¨ìˆ˜ 
+    ptr = getExt_txt(file_adr); //  íŒŒì¼ í™•ì¥ì ì¶”ì¶œ í•¨ìˆ˜ í˜¸ì¶œ
 
     return 0;
 }
